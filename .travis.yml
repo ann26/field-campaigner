@@ -63,15 +63,15 @@ git:
   #  username: "timlinux"
   #  access_key: "Your Sauce Labs access key"
 
-notifications:
-  irc:
-    channels:
-      - "irc.freenode.org#kartoza"
-    use_notice: true
-
-  email:
-    - tim@kartoza.com
-    - anita@kartoza.com
+#notifications:
+#  irc:
+#    channels:
+#      - "irc.freenode.org#kartoza"
+#    use_notice: true
+#
+#  email:
+#    - tim@kartoza.com
+#    - anita@kartoza.com
 #  webhooks:
 #    urls:
 #      - https://webhooks.gitter.im/e/467e3aff72e344d1dae3 # need to get a proper app key first
