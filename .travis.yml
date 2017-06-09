@@ -100,8 +100,8 @@ before_script:
   - echo "Databases:"
   - psql -l
   - which pgsql2shp
-  - pip install -r requirements.txt
-  - pip install -r requirements-dev.txt
+  - pip install -r deployment/docker/requirements.txt
+  - pip install -r deployment/docker/requirements-dev.txt
 
 script:
   - PYTHONPATH=`pwd`/reporter:`pwd`:$(PYTHONPATH) nosetests -v --with-id --with-xcoverage --with-xunit --verbose --cover-package=reporter reporter
