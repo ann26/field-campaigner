@@ -71,6 +71,7 @@ notifications:
 
   email:
     - tim@kartoza.com
+    - anita@kartoza.com
 #  webhooks:
 #    urls:
 #      - https://webhooks.gitter.im/e/467e3aff72e344d1dae3 # need to get a proper app key first
@@ -83,7 +84,8 @@ before_install:
 
 install:
   #- ./ci/travis/${TRAVIS_CONFIG}/install.sh
-  -
+  - pip install -r deployment/docker/requirements.txt
+  - pip install -r deployment/docker/requirements-dev.txt
 
 before_script:
   - echo "Build starting on " `date`
@@ -100,8 +102,6 @@ before_script:
   - echo "Databases:"
   - psql -l
   - which pgsql2shp
-  - pip install -r deployment/docker/requirements.txt
-  - pip install -r deployment/docker/requirements-dev.txt
 
 script:
   - PYTHONPATH=`pwd`/reporter:`pwd`:$(PYTHONPATH) nosetests -v --with-id --with-xcoverage --with-xunit --verbose --cover-package=reporter reporter
