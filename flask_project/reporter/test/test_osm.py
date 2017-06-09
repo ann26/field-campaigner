@@ -5,7 +5,7 @@
 """
 import os
 
-from unittest import mock
+from unittest.mock import patch
 from reporter.utilities import LOGGER
 from reporter.osm import (
     load_osm_document,
@@ -19,6 +19,8 @@ from reporter.test.logged_unittest import LoggedTestCase
 class OsmTestCase(LoggedTestCase):
     """Test the OSM retrieval functions."""
 
+    @patch('reporter.osm.load_osm_document.fetch_osm', return_false='document loaded')
+
     def test_load_osm_document(self):
         """Check that we can fetch an osm doc and that it caches properly."""
         #
@@ -31,7 +33,7 @@ class OsmTestCase(LoggedTestCase):
         file_path = '/tmp/test_load_osm_document.osm'
         LOGGER.info('url: %s' % url)
         LOGGER.info('file_path: %s' % file_path)
-        load_osm_document = mock.MagicMock(return_value='osm document loaded')
+
         if os.path.exists(file_path):
             os.remove(file_path)
             # We test twice - once to ensure its fetched from the overpass api
@@ -71,7 +73,6 @@ class OsmTestCase(LoggedTestCase):
             '(node(-34.03112731086964,20.44997155666351,'
             '-34.029571310785315,20.45501410961151);<;);out+meta;')
         file_path = '/tmp/test_load_osm_document_with_Date.osm'
-        load_osm_document = mock.MagicMock(return_value='osm document loaded')
         if os.path.exists(file_path):
             os.remove(file_path)
             # We test twice - once to ensure its fetched from the overpass api

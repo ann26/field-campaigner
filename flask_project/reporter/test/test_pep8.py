@@ -51,7 +51,7 @@ class TestPep8(unittest.TestCase):
             root = '../../'
             command = ['make', 'pep8']
             output = Popen(command, stdout=PIPE, cwd=root).communicate()[0]
-            default_number_lines = 5
+            default_number_lines = 0
 
         # make pep8 produces some extra lines by default.
         lines = len(output.splitlines()) - default_number_lines
