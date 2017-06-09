@@ -10,6 +10,7 @@ cache:
     #- /tmp # cache any previously downloaded .osm files
   timeout: 1000
 compiler: clang
+
 addons:
   postgresql: "9.4"
   apt:
