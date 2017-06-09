@@ -5,7 +5,7 @@
 """
 import os
 
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
 from reporter.utilities import LOGGER
 from reporter.osm import (
     load_osm_document,
@@ -19,7 +19,7 @@ from reporter.test.logged_unittest import LoggedTestCase
 class OsmTestCase(LoggedTestCase):
     """Test the OSM retrieval functions."""
 
-    @patch('reporter.osm.load_osm_document.fetch_osm', return_false='document loaded')
+    @patch('reporter.osm.load_osm_document.fetch_osm', return_value='document is loaded')
 
     def test_load_osm_document(self):
         """Check that we can fetch an osm doc and that it caches properly."""
