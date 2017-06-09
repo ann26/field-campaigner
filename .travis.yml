@@ -84,12 +84,12 @@ before_install:
 
 install:
   #- ./ci/travis/${TRAVIS_CONFIG}/install.sh
-  # - pip install coveralls
+  - pip install coveralls
   - pip install -r deployment/docker/requirements.txt
   - pip install -r deployment/docker/requirements-dev.txt
 
 before_script:
-  - echo "Build starting on " 'date'
+  #- echo "Build starting on " 'date'
   - psql -U postgres -c "create database template_postgis encoding 'UTF8' TEMPLATE template0;"
   - psql -U postgres -c "update pg_database set datistemplate=true where datname='template_postgis';"
   - psql -U postgres -c "create extension postgis;" template_postgis 
@@ -109,6 +109,10 @@ script:
   #- make pep8
   - cd flask_project
   - nosetests campaign_manager/test
+  - nosetests reporter/test
 
 after_script:
-  #- coveralls
+  - coveralls
+
+email:
+  - anita@kartoza.com
