@@ -84,6 +84,7 @@ before_install:
 
 install:
   #- ./ci/travis/${TRAVIS_CONFIG}/install.sh
+  - pip install coveralls
   - pip install -r deployment/docker/requirements.txt
   - pip install -r deployment/docker/requirements-dev.txt
 
@@ -104,8 +105,9 @@ before_script:
   - which pgsql2shp
 
 script:
-  - PYTHONPATH=`pwd`/reporter:`pwd`:$(PYTHONPATH) nosetests -v --with-id --with-xcoverage --with-xunit --verbose --cover-package=reporter reporter
-  - make pep8
+  #- PYTHONPATH=`pwd`/reporter:`pwd`:$(PYTHONPATH) nosetests -v --with-id --with-xcoverage --with-xunit --verbose --cover-package=reporter reporter
+  #- make pep8
+  - coverage run manage.py test
 
 after_script:
-  -
+  - coveralls
