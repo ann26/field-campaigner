@@ -106,9 +106,9 @@ before_script:
 
 script:
   #- PYTHONPATH=`pwd`/reporter:`pwd`:$(PYTHONPATH) nosetests -v --with-id --with-xcoverage --with-xunit --verbose --cover-package=reporter reporter
-  - make pep8
+  #- make pep8
   - cd flask_project
-  - nosetests campaign_manager/test
+  - coverage nosetests campaign_manager/test
   #- nosetests reporter/test
 
 after_script:
